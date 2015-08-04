@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+    <style>
+        .used { height:3em; }
+        .memory { width:{{m.percent|round(1)}}%; }
+        .cpu { width:{{c|round(1)}}%; }
+
+        .blue { background-color:blue; }
+        .green { background-color:green; }
+    </style>
+</head>
+<body>
+
+    Memory: {{m.percent|round(1)}}% used ({{m.available|b2m}}M available out of {{m.total|b2m}}M)
+    CPU: {{c|round(1)}}%
+
+    <div class="blue used cpu"></div>
+    <div class="green used memory"></div>
+
+</body>
+</html>
