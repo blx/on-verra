@@ -1,3 +1,5 @@
+from __future__ import division
+
 from datetime import datetime
 import psutil as ps
 
@@ -12,8 +14,9 @@ def b2m(b):
 
 @app.route("/")
 def index():
-    uptime = str(datetime.now() - datetime.fromtimestamp(ps.boot_time())).split(".")[0]
-    uptime = ', '.join(''.join(tup) for tup in zip(uptime.split(":"), ["h", "m", "s"]))
+    uptime = str(datetime.now() - datetime.fromtimestamp(ps.boot_time()))
+    uptime = ', '.join(a+b for a, b in zip(uptime.split(".")[0].split(":"),
+                                           ["h", "m", "s"]))
     return render_template("index.html",
                            m=ps.virtual_memory(),
                            c=ps.cpu_percent(interval=0.4),
