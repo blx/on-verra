@@ -6,6 +6,7 @@ import psutil as ps
 from flask import Flask, render_template
 
 app = Flask(__name__)
+ps.cpu_percent() # init/seed reading
 
 @app.template_filter("b2m")
 def b2m(b):
@@ -19,7 +20,7 @@ def index():
                                            ["h", "m", "s"]))
     return render_template("index.html",
                            m=ps.virtual_memory(),
-                           c=ps.cpu_percent(interval=0.4),
+                           c=ps.cpu_percent(),
                            uptime=uptime)
 
 if __name__ == "__main__":
