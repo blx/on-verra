@@ -1,3 +1,4 @@
+from datetime import datetime
 import psutil as ps
 
 from flask import Flask, render_template
@@ -11,7 +12,12 @@ def b2m(b):
 
 @app.route("/")
 def index():
-    return render_template("index.html", m=ps.virtual_memory(), c=ps.cpu_percent(interval=0.4))
+    uptime = str(datetime.now() - datetime.fromtimestamp(ps.boot_time())).split(".")[0]
+    uptime = ', '.join(''.join(tup) for tup in zip(uptime.split(":"), ["h", "m", "s"]))
+    return render_template("index.html",
+                           m=ps.virtual_memory(),
+                           c=ps.cpu_percent(interval=0.4),
+                           uptime=uptime)
 
 if __name__ == "__main__":
     app.run(debug=True)
