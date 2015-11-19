@@ -2,6 +2,7 @@
 
 Absurdly simple Flask microapp to report current CPU and RAM usage of your server, as well as uptime.
 
+![Screenshot](/../gh-pages/screenshots/screenshot.png?raw=true)
 
 ## Installation
 
