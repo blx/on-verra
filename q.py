@@ -1,8 +1,9 @@
+#!/usr/bin/env python2
+
 from __future__ import division
 
 from datetime import datetime
 import psutil as ps
-
 from flask import Flask, render_template
 
 app = Flask(__name__)
@@ -24,4 +25,4 @@ def index():
                            uptime=uptime)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
